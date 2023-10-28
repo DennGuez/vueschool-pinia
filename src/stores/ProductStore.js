@@ -1,10 +1,17 @@
 import { defineStore } from 'pinia'
-import products from '@/data/products.json'
 
 export const useProductStore = defineStore('ProductStore', {
    state: () => {
       return {
-         products: products
+         products: []
+      }
+   },
+
+   actions: {
+      // Example realistic case, is a function to fill our state from an API
+      async fill() {
+         // this.products = (await axios.get('some/end/point')).data
+         this.products = (await import('@/data/products.json')).default
       }
    }
 })
