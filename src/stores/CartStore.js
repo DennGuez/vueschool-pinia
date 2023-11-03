@@ -16,7 +16,9 @@ export const useCartStore = defineStore('CartStore', {
       },
 
       grouped: (state) => groupBy(state.items, (item) => item.name),
-      groupCount: (state) => (name) => state.grouped[name].length
+      groupCount: (state) => (name) => state.grouped[name].length,
+      // totalPrice: (state) => state.items.reduce((acc, item) => { return acc + item.price }, 0)
+      totalPrice: (state) => state.items.reduce((acc, item) => acc + item.price, 0)
    },
 
    actions: {
@@ -28,6 +30,14 @@ export const useCartStore = defineStore('CartStore', {
             // this.items.push(item);
             this.items.push({ ...item })
          }
+      },
+
+      clearItem(itemName) {
+         // const newState = this.items.filter((item) => {
+         //    return item.name !== name
+         // })
+         // this.items = [...newState]
+         this.items = this.items.filter(item => item.name !== itemName)
       }
    }
 })
