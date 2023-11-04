@@ -36,6 +36,7 @@ cartStore.$subscribe((mutation, state) => {
    // console.log({state});
    if(!doingHistory.value) {
       history.push(JSON.stringify(state))
+      future.splice(0, future.length)
    }
 })
 
