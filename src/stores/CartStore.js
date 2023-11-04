@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore, acceptHMRUpdate } from "pinia";
 import { groupBy } from "lodash";
 
 export const useCartStore = defineStore('CartStore', {
@@ -22,15 +22,15 @@ export const useCartStore = defineStore('CartStore', {
    },
 
    actions: {
-      addItems(count, item) {
-         count = parseInt(count);
-         for (let index = 0; index < count; index++) {
-            /* Nunca pasar dato por refenrecia, si no por valor, 
-            /  we need to clone the product or item adding it the cart items */
-            // this.items.push(item);
-            this.items.push({ ...item })
-         }
-      },
+      // addItems(count, item) {
+      //    count = parseInt(count);
+      //    for (let index = 0; index < count; index++) {
+      //       /* Nunca pasar dato por refenrecia, si no por valor, 
+      //       /  we need to clone the product or item adding it the cart items */
+      //       // this.items.push(item);
+      //       this.items.push({ ...item })
+      //    }
+      // },
 
       clearItem(itemName) {
          // const newState = this.items.filter((item) => {
@@ -41,3 +41,7 @@ export const useCartStore = defineStore('CartStore', {
       }
    }
 })
+
+if (import.meta.hot) {
+   import.meta.hot.accept(acceptHMRUpdate(useCartStore, import.meta.hot))
+}
