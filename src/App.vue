@@ -7,15 +7,25 @@ import { useCartStore } from "./stores/CartStore";
 const productStore = useProductStore();
 const cartStore = useCartStore();
 
+cartStore.$onAction(({
+   name,
+   store,
+   args,
+   after,
+   onError
+})=>{
+   // We need to specify the name, because if it is not executed for all the actions that the store has
+   if(name === 'addItems'){
+      after(() => {
+         console.log(args[0])
+      });
+      onError((error) => {
+         console.log("Hello error", error,message)
+      })
+   }
+})
+
 productStore.fill();
-
-// const addToCart = (count, product) => {
-//    count = parseInt(count)
-
-//    for (let index = 0; index < count; index++) {
-//       cartStore.items.push(product)
-//    }
-// }
 </script>
 
 <template>

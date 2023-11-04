@@ -22,15 +22,16 @@ export const useCartStore = defineStore('CartStore', {
    },
 
    actions: {
-      // addItems(count, item) {
-      //    count = parseInt(count);
-      //    for (let index = 0; index < count; index++) {
-      //       /* Nunca pasar dato por refenrecia, si no por valor, 
-      //       /  we need to clone the product or item adding it the cart items */
-      //       // this.items.push(item);
-      //       this.items.push({ ...item })
-      //    }
-      // },
+      addItems(count, item) {
+         count = parseInt(count);
+         // throw new Error("example error");
+         for (let index = 0; index < count; index++) {
+            /* Nunca pasar dato por refenrecia, si no por valor, 
+            /  we need to clone the product or item adding it the cart items */
+            // this.items.push(item);
+            this.items.push({ ...item })
+         }
+      },
 
       clearItem(itemName) {
          // const newState = this.items.filter((item) => {
